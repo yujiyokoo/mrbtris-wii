@@ -40,11 +40,6 @@ static mrb_value get_button_masks(mrb_state *mrb, mrb_value self) {
   return mask_array;
 }
 
-static mrb_value clear_score(mrb_state *mrb, mrb_value self) {
-  // unimplemented
-  return mrb_nil_value();
-}
-
 static mrb_value draw20x20_640(mrb_state *mrb, mrb_value self) {
   // unimplemented
   return mrb_nil_value();
@@ -105,8 +100,21 @@ static mrb_value btn_b(mrb_state *mrb, mrb_value self) {
   return mrb_fixnum_value(0);
 }
 
+static mrb_value clear_score(mrb_state *mrb, mrb_value self) {
+  char* clear_str = "Press START";
+	printf("\x1b[4;60H");
+	printf("%s", clear_str);
+  return mrb_nil_value();
+}
+
 static mrb_value render_score(mrb_state *mrb, mrb_value self) {
-  // unimplemented
+  struct mrb_value score;
+  mrb_get_args(mrb, "i", &score);
+  char buf[20];
+  snprintf(buf, 20, "Score: %8" PRId32, mrb_fixnum(score));
+	printf("\x1b[4;60H");
+	printf("%s", buf);
+
   return mrb_nil_value();
 }
 
