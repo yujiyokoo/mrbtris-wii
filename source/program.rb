@@ -495,8 +495,8 @@ class BoardState
 end
 
 class Screen
-  LEFT_SPACE_PX=260
-  TOP_SPACE_PX=20
+  LEFT_SPACE_PX=100
+  TOP_SPACE_PX=0
 
   attr_reader :dc2d
 
@@ -527,7 +527,7 @@ class Screen
 
   def draw_square(x, y, r, g, b, ignore_boundary)
     if (x > 0 && x < 11 && y > 0 && y < 21) || ignore_boundary
-      @dc2d::draw20x20_640(x*20+LEFT_SPACE_PX, y*20+TOP_SPACE_PX, r, g, b)
+      @dc2d::draw20x20_640(x*10+LEFT_SPACE_PX, y*20+TOP_SPACE_PX, r, g, b)
     end
   end
 
@@ -647,7 +647,6 @@ class MainGame
   SOLID_BOARD_BEFORE_START = ([].push [:grey] * 12) * 22
 
   def initialize(screen, dc2d)
-  MrbtrisWii.print_msg 'initialising' 
     @dc2d = dc2d
     @screen = screen.new(@dc2d)
     @game_state = GameState.new(@dc2d, @screen, BoardState)
