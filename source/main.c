@@ -27,7 +27,7 @@ static mrb_value print_msg(mrb_state *mrb, mrb_value self) {
 
   mrb_get_args(mrb, "S", &str_content);
   unwrapped_content = mrb_str_to_cstr(mrb, str_content);
-  printf("\x1b[10;60H");
+  printf("\x1b[12;50H");
   printf("%s\n", unwrapped_content);
 
   return mrb_nil_value();
@@ -83,11 +83,6 @@ static mrb_value draw20x20_640(mrb_state *mrb, mrb_value self) {
       }
     }
   } else {
-//    for(i = 0; i < 20; i++) {
-//      for(j = 0; j < 10; j++) {
-//        xfb[x+j + (y+i) * 320] = PACK_PIXEL(r, g, b);
-//      }
-//    }
     int r_light = (r+128 <= 255) ? r+128 : 255;
     int g_light = (g+128 <= 255) ? g+128 : 255;
     int b_light = (b+128 <= 255) ? b+128 : 255;
@@ -145,7 +140,6 @@ void *read_buttons() {
 }
 
 static mrb_value start_controller_reader(mrb_state *mrb, mrb_value self) {
-  // unimplemented
   lwp_t thread;
   LWP_CreateThread(&thread, read_buttons, NULL, NULL, 0, 0);
   return mrb_fixnum_value(0);
@@ -211,7 +205,7 @@ static mrb_value btn_b(mrb_state *mrb, mrb_value self) {
 
 static mrb_value clear_score(mrb_state *mrb, mrb_value self) {
   char* clear_str = "Press START";
-  printf("\x1b[4;60H");
+  printf("\x1b[8;53H");
   printf("%s", clear_str);
   return mrb_nil_value();
 }
@@ -221,7 +215,7 @@ static mrb_value render_score(mrb_state *mrb, mrb_value self) {
   mrb_get_args(mrb, "i", &score);
   char buf[20];
   snprintf(buf, 20, "Score: %8" PRId32, score);
-  printf("\x1b[4;60H");
+  printf("\x1b[8;53H");
   printf("%s", buf);
 
   return mrb_nil_value();

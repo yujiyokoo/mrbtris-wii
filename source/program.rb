@@ -495,8 +495,8 @@ class BoardState
 end
 
 class Screen
-  LEFT_SPACE_PX=100
-  TOP_SPACE_PX=0
+  LEFT_SPACE_PX=80
+  TOP_SPACE_PX=20
 
   attr_reader :dc2d
 
