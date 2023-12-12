@@ -505,7 +505,7 @@ class Screen
   end
 
   def render_score(board_state)
-    @dc2d::render_score(board_state.score)
+    @dc2d::render_score(board_state.score.to_i * 100)
   end
 
   def render_upcoming_block_pane(board_state)
