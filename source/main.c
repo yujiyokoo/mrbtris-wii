@@ -163,24 +163,24 @@ static mrb_value get_button_states(mrb_state *mrb, mrb_value self) {
 }
 
 static mrb_value start_btn(mrb_state *mrb, mrb_value self) {
-  struct mrb_value state;
+  mrb_int state;
   mrb_get_args(mrb, "i", &state);
 
-  return mrb_bool_value(state.w & PAD_BUTTON_START);
+  return mrb_bool_value(state & PAD_BUTTON_START);
 }
 
 static mrb_value dpad_left(mrb_state *mrb, mrb_value self) {
-  struct mrb_value state;
+  mrb_int state;
   mrb_get_args(mrb, "i", &state);
 
-  return mrb_bool_value(state.w & PAD_BUTTON_LEFT);
+  return mrb_bool_value(state & PAD_BUTTON_LEFT);
 }
 
 static mrb_value dpad_right(mrb_state *mrb, mrb_value self) {
-  struct mrb_value state;
+  mrb_int state;
   mrb_get_args(mrb, "i", &state);
 
-  return mrb_bool_value(state.w & PAD_BUTTON_RIGHT);
+  return mrb_bool_value(state & PAD_BUTTON_RIGHT);
 }
 
 static mrb_value dpad_up(mrb_state *mrb, mrb_value self) {
@@ -189,24 +189,24 @@ static mrb_value dpad_up(mrb_state *mrb, mrb_value self) {
 }
 
 static mrb_value dpad_down(mrb_state *mrb, mrb_value self) {
-  struct mrb_value state;
+  mrb_int state;
   mrb_get_args(mrb, "i", &state);
 
-  return mrb_bool_value(state.w & PAD_BUTTON_DOWN);
+  return mrb_bool_value(state & PAD_BUTTON_DOWN);
 }
 
 static mrb_value btn_a(mrb_state *mrb, mrb_value self) {
-  struct mrb_value state;
+  mrb_int state;
   mrb_get_args(mrb, "i", &state);
 
-  return mrb_bool_value(state.w & PAD_BUTTON_A);
+  return mrb_bool_value(state & PAD_BUTTON_A);
 }
 
 static mrb_value btn_b(mrb_state *mrb, mrb_value self) {
-  struct mrb_value state;
+  mrb_int state;
   mrb_get_args(mrb, "i", &state);
 
-  return mrb_bool_value(state.w & PAD_BUTTON_B);
+  return mrb_bool_value(state & PAD_BUTTON_B);
 }
 
 static mrb_value clear_score(mrb_state *mrb, mrb_value self) {
@@ -217,10 +217,10 @@ static mrb_value clear_score(mrb_state *mrb, mrb_value self) {
 }
 
 static mrb_value render_score(mrb_state *mrb, mrb_value self) {
-  struct mrb_value score;
+  mrb_int score;
   mrb_get_args(mrb, "i", &score);
   char buf[20];
-  snprintf(buf, 20, "Score: %8" PRId32, score.w);
+  snprintf(buf, 20, "Score: %8" PRId32, score);
   printf("\x1b[4;60H");
   printf("%s", buf);
 
