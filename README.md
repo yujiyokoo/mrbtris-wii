@@ -1,9 +1,9 @@
-# mrbtris on Wii - Proof of Concept
+# mrbtris on Wii - ported from Dreamcast
 
 ## WIP
 
 This is an early-stage Work In Progress project.
-It is currently being actively developed (as at 20 Oct 2023).
+It is currently being actively developed (as at Dec 2023).
 A lot of things will improve in the near future.
 
 ## Build
