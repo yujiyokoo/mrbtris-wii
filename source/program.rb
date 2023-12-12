@@ -545,7 +545,7 @@ class Screen
         if cell
           draw_colour_square(x, y, cell, true)
         else
-          draw_black_square(x, y, true)
+          draw_black_square(x, y, false)
         end
       }
     }
